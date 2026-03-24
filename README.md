@@ -1,89 +1,77 @@
-# Gestión de Estudiantes
+# Gestión de Estudiantes 😎
 
-Este proyecto es una aplicación web simple para gestionar estudiantes, permitiendo registrar, listar, buscar, editar y eliminar estudiantes. Los datos se almacenan localmente en el navegador usando localStorage.
+Este es un proyecto simple que hice para gestionar estudiantes. Básicamente, es un formulario web donde puedes agregar, ver, buscar, editar y borrar estudiantes. Todo se guarda en el navegador, así que no necesitas un servidor ni nada complicado.
 
-## Características
+## ¿Qué hace?
 
-- Registro de estudiantes con código único, nombre, correo y programa académico.
-- Validación básica de campos (código numérico, correo válido).
-- Lista de estudiantes en una tabla.
-- Búsqueda en tiempo real por nombre, correo, programa o código.
-- Edición y eliminación de estudiantes.
-- Interfaz responsiva con colores suaves.
+- Agregar estudiantes con código, nombre, email y programa.
+- Ver todos en una tabla bonita.
+- Buscar por nombre, email, programa o código (en tiempo real).
+- Editar o borrar estudiantes fácilmente.
+- Interfaz chévere con colores suaves.
 
-## Tecnologías Utilizadas
+## Tecnologías que usé
 
-- **HTML5**: Estructura de la página.
-- **CSS3**: Estilos y diseño.
-- **JavaScript (ES6)**: Lógica del formulario, manipulación del DOM y almacenamiento local.
+- **HTML5**: Para la estructura de la página.
+- **CSS3**: Para que se vea bonito.
+- **JavaScript**: Para la lógica y guardar datos localmente.
 
-## Proceso de Creación del Código
+## Cómo lo hice
 
-### 1. Estructura HTML
-- Se creó un formulario con inputs para código, nombre, correo y un select para programa.
-- Una tabla para mostrar la lista de estudiantes.
-- Un campo de búsqueda para filtrar estudiantes.
-- Enlaces al archivo JavaScript.
+### 1. La estructura (HTML)
+Puse un formulario con campos para el código (solo números), nombre, email y un menú para elegir el programa. Después, una tabla para mostrar los estudiantes y un campo para buscar.
 
-### 2. Estilos CSS
-- Fondo verde claro (#d9ffea).
-- Colores azules y verdes para botones y encabezados.
-- Bordes redondeados y hover effects.
-- Tabla con bordes y colores consistentes.
+### 2. Los estilos (CSS)
+Elegí colores verdes y azules suaves, botones redondeados y un fondo relajante. Nada fancy, pero se ve bien.
 
-### 3. Lógica JavaScript (app.js)
-- **Almacenamiento**: Usar localStorage para persistir datos.
-- **Funciones principales**:
-  - `guardarEstudiante()`: Valida y guarda un estudiante.
-  - `mostrarEstudiantes()`: Renderiza la tabla con estudiantes.
-  - `filtrarEstudiantes()`: Filtra la lista según búsqueda.
-  - `editarEstudiante()`: Permite editar inline.
-  - `eliminarEstudiante()`: Elimina un estudiante.
-- Validaciones: Código único, campos requeridos, formato de correo.
+### 3. La lógica (JavaScript en app.js)
+- Uso localStorage para guardar los datos (no se pierden al recargar).
+- Funciones principales:
+  - `guardarEstudiante()`: Chequea que todo esté bien y guarda.
+  - `mostrarEstudiantes()`: Dibuja la tabla con todos.
+  - `filtrarEstudiantes()`: Busca mientras escribes.
+  - `editarEstudiante()`: Edita directo en la tabla.
+  - `eliminarEstudiante()`: Borra con confirmación.
+- Validé cosas como que el código sea único y el email válido.
 
-### 4. Mejoras
-- Búsqueda insensible a mayúsculas.
-- Edición sin recargar página.
-- Mensajes de confirmación para eliminación.
+### 4. Mejoras que agregué
+- Búsqueda sin importar mayúsculas.
+- Edición sin refrescar la página.
+- Mensajes para confirmar borrados.
 
-## Despliegue
+## Cómo desplegarlo
 
-### 1. Inicialización de Git
-- `git init` en la carpeta del proyecto.
-- `git add .` para agregar archivos.
-- `git commit -m "Initial commit"` para el primer commit.
+### 1. Git y GitHub
+- `git init` para empezar.
+- `git add .` y `git commit -m "Primer commit"` para guardar.
+- Subí a GitHub creando un repo llamado "html-formulario".
+- `git remote add origin <URL>` y `git push` para subir.
 
-### 2. Subida a GitHub
-- Crear repositorio en GitHub (ej: html-formulario).
-- `git remote add origin <URL del repo>`.
-- `git push -u origin master` para subir.
+### 2. GitHub Pages
+- Hice el repo público.
+- Fui a Settings > Pages > Elegí la rama master y carpeta raíz.
+- ¡Listo! El sitio está en https://angomez-0426.github.io/html-formulario/
 
-### 3. Configuración de GitHub Pages
-- Hacer el repositorio público.
-- Ir a Settings > Pages > Deploy from a branch > Rama master, carpeta /.
-- El sitio estará disponible en `https://<usuario>.github.io/<nombre-repo>/`.
+### 3. Acceso público
+Ahora cualquiera con internet puede usarlo desde su PC o móvil. Los datos son locales, así que cada uno tiene su lista.
 
-### 4. Acceso Público
-- Cualquiera con internet puede acceder desde cualquier dispositivo.
-- Los datos se almacenan localmente, por lo que cada usuario tiene su propia lista.
+## Para probarlo local
 
-## Instalación Local
+1. Clona el repo: `git clone <URL>`.
+2. Abre index.html en tu navegador.
+3. ¡Ya está! No necesitas instalar nada.
 
-1. Clona el repositorio: `git clone <URL>`.
-2. Abre `index.html` en un navegador web.
-3. No requiere servidor, funciona directamente en el navegador.
+## Cómo usarlo
 
-## Uso
+1. Llena los campos.
+2. Dale a "Guardar".
+3. Busca con el campo de arriba.
+4. Edita o borra desde la tabla.
 
-1. Llena los campos del formulario.
-2. Haz clic en "Guardar".
-3. Usa el campo de búsqueda para filtrar estudiantes.
-4. Edita o elimina estudiantes desde la tabla.
+## Contribuciones
 
-## Contribución
-
-Si deseas contribuir, haz un fork del repo, crea una rama para tus cambios y envía un pull request.
+Si quieres mejorar algo, haz un fork y manda un PR. ¡Todo bienvenido!
 
 ## Licencia
 
-Este proyecto es de código abierto. Úsalo libremente.
+Es open source, úsalo como quieras. 😊
