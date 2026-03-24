@@ -1,4 +1,4 @@
-# Gestión de Estudiantes 😎
+# Gestión de Estudiantes 
 
 Este es un proyecto simple que hice para gestionar estudiantes. Básicamente, es un formulario web donde puedes agregar, ver, buscar, editar y borrar estudiantes. Todo se guarda en el navegador, así que no necesitas un servidor ni nada complicado.
 
