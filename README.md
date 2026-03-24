@@ -14,7 +14,18 @@ Este es un proyecto simple que hice para gestionar estudiantes. Básicamente, es
 
 - **HTML5**: Para la estructura de la página.
 - **CSS3**: Para la parte grafica de la página. 
-- **JavaScript**: Para la lógica y guardar datos localmente.
+- **JavaScript**: Para la lógica y guardar datos.
+- **Firebase Firestore**: Base de datos en la nube para compartir datos entre usuarios.
+
+## Cómo configurar Firebase
+
+Para usar la base de datos en la nube:
+
+1. Ve a [Firebase Console](https://console.firebase.google.com/) y crea un proyecto.
+2. Habilita Firestore Database.
+3. Ve a Project Settings > General > Your apps > Web app, copia la config.
+4. En `index.html`, reemplaza `TU_API_KEY`, etc., con tus valores reales.
+5. ¡Listo! Los datos se guardan en la nube y se comparten entre todos los usuarios.
 
 ## Cómo lo hice
 
