@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestión de Estudiantes</title>
+  <style>
+    body {
+      background-color: #d9ffea;
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1, h2 {
+      color: #62afb7;
+      text-align: center;
+    }
+    input {
+      padding: 10px;
+      margin: 5px;
+      border: 2px solid #63bda4;
+      border-radius: 5px;
+      background-color: #d9ffea;
+      width: 200px;
+    }
+    #busqueda {
+      width: 400px;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 10px 15px;
+      margin: 5px;
+      background-color: #63bda4;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #62afb7;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: white;
+      border: 2px solid #63bda4;
+    }
+    th {
+      background-color: #62afb7;
+      color: white;
+      padding: 10px;
+    }
+    td {
+      padding: 10px;
+      border: 1px solid #63bda4;
+    }
+    .edit-input {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #63bda4;
+      border-radius: 3px;
+    }
+    .action-btn {
+      margin: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Registro de Estudiantes</h1>
+
+  <input type="text" id="codigo" placeholder="Código único" inputmode="numeric" pattern="\d*" maxlength="10" title="Solo dígitos">
+  <input type="text" id="nombre" placeholder="Nombre">
+  <input type="email" id="correo" placeholder="Correo">
+  <select id="programa">
+    <option value="" disabled selected>Seleccione un programa</option>
+    <option>Derecho</option>
+    <option>Investigación Criminal</option>
+    <option>Tecnología en Investigación Criminal</option>
+    <option>Dirección y Producción de Cine y Televisión</option>
+    <option>Diseño de Moda</option>
+    <option>Producción y Comunicación Transmedia</option>
+    <option>Ingeniería Biomédica</option>
+    <option>Ingeniería Mecatrónica</option>
+    <option>Ingeniería de Software</option>
+    <option>Ingeniería Industrial</option>
+    <option>Ingeniería Ambiental</option>
+    <option>Administración de Empresas</option>
+    <option>Administración Logística</option>
+    <option>Administración Turística y Hotelera</option>
+    <option>Administración Deportiva</option>
+    <option>Enfermería</option>
+    <option>Fisioterapia</option>
+    <option>Fonoaudiología</option>
+    <option>Terapia Ocupacional</option>
+    <option>Terapia Respiratoria</option>
+    <option>Ciencias del Deporte</option>
+    <option>Psicología</option>
+  </select>
+
+  <button onclick="guardarEstudiante()">Guardar</button>
+
+  <h2>Lista de Estudiantes</h2>
+
+  <input type="text" id="busqueda" placeholder="Buscar por nombre, correo, programa o código" onkeyup="filtrarEstudiantes()">
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Programa</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody id="tablaEstudiantes"></tbody>
+  </table>
+
+  <script src="app.js"></script>
+
+</body>
+</html>
