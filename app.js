@@ -1,41 +1,8 @@
-// Configuración de IndexedDB (Base de datos del navegador)
-// IndexedDB es una base de datos local en el navegador que permite almacenar datos de forma persistente.
-// Aquí se abre la base de datos 'EstudiantesDB' con versión 2 (actualizada para forzar índices únicos).
-// Si la base de datos no existe, se crea; si la versión cambia, se actualiza.
-let db;
-const request = indexedDB.open('EstudiantesDB', 2);
+// Importar funciones de Firebase (asumiendo que están disponibles globalmente desde index.html)
+const { collection, addDoc, getDocs, doc, updateDoc, deleteDoc, query, where } = window; // Ajustar según el import
 
-// Evento que se ejecuta si hay un error al abrir la base de datos
-request.onerror = function(event) {
-  console.log('Error opening DB');
-};
-
-// Evento que se ejecuta cuando la base de datos se abre exitosamente
-request.onsuccess = function(event) {
-  db = event.target.result;  // Asigna la instancia de la base de datos a la variable db
-  cargarEstudiantes();  // Carga los estudiantes existentes en la tabla
-};
-
-// Evento que se ejecuta si la base de datos necesita actualizarse (por ejemplo, nueva versión)
-request.onupgradeneeded = function(event) {
-  db = event.target.result;
-  // Si es una actualización de versión, borrar el objectStore anterior y recrear con índices
-  if (event.oldVersion < 2) {
-    if (db.objectStoreNames.contains('estudiantes')) {
-      db.deleteObjectStore('estudiantes');
-    }
-  }
-  // Crea un 'object store' llamado 'estudiantes' con clave primaria 'id' autoincremental
-  const objectStore = db.createObjectStore('estudiantes', { keyPath: 'id', autoIncrement: true });
-  // Crea índices para buscar por nombre, correo, programa y código (código único)
-  objectStore.createIndex('nombre', 'nombre', { unique: false });
-  objectStore.createIndex('correo', 'correo', { unique: false });
-  objectStore.createIndex('programa', 'programa', { unique: false });
-  objectStore.createIndex('codigo', 'codigo', { unique: true });
-};
-
-// Function to save student
-function guardarEstudiante() {
+// Función para guardar estudiante
+async function guardarEstudiante() {
   const codigo = document.getElementById('codigo').value.trim();
   const nombre = document.getElementById('nombre').value.trim();
   const correo = document.getElementById('correo').value.trim();
@@ -64,40 +31,101 @@ function guardarEstudiante() {
     return;
   }
 
-  console.log('Intentando guardar estudiante:', { codigo, nombre, correo, programa });
+  try {
+    // Verificar si el código ya existe
+    const q = query(collection(window.db, 'estudiantes'), where('codigo', '==', codigo));
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+      alert('Ese código ya está registrado.');
+      return;
+    }
 
-  const transaction = db.transaction(['estudiantes'], 'readwrite');
-  const objectStore = transaction.objectStore('estudiantes');
-  const request = objectStore.add({ codigo, nombre, correo, programa });
+    // Agregar estudiante
+    await addDoc(collection(window.db, 'estudiantes'), {
+      codigo,
+      nombre,
+      correo,
+      programa
+    });
 
-  request.onsuccess = function(event) {
-    console.log('Estudiante guardado exitosamente');
+    alert('Estudiante guardado exitosamente');
     document.getElementById('codigo').value = '';
     document.getElementById('nombre').value = '';
     document.getElementById('correo').value = '';
     document.getElementById('programa').value = '';
     cargarEstudiantes();
-  };
-
-  request.onerror = function(event) {
-    if (event.target.error.name === 'ConstraintError') {
-      alert('Ese código ya está registrado.');
-    } else {
-      console.log('Error guardando estudiante:', event.target.error);
-      alert('Error al guardar el estudiante. Revisa la consola para más detalles.');
-    }
-  };
+  } catch (error) {
+    console.error('Error guardando estudiante:', error);
+    alert('Error al guardar el estudiante.');
+  }
 }
 
-// Function to load students
-function cargarEstudiantes() {
-  const transaction = db.transaction(['estudiantes'], 'readonly');
-  const objectStore = transaction.objectStore('estudiantes');
-  const request = objectStore.getAll();
-
-  request.onsuccess = function(event) {
-    const estudiantes = event.target.result;
+// Función para cargar estudiantes
+async function cargarEstudiantes() {
+  try {
+    const querySnapshot = await getDocs(collection(window.db, 'estudiantes'));
+    const estudiantes = [];
+    querySnapshot.forEach((doc) => {
+      estudiantes.push({ id: doc.id, ...doc.data() });
+    });
     console.log('Estudiantes cargados:', estudiantes);
+    mostrarEstudiantes(estudiantes);
+  } catch (error) {
+    console.error('Error cargando estudiantes:', error);
+  }
+}
+
+// Función para mostrar estudiantes (actualizar para usar el array)
+function mostrarEstudiantes(estudiantes) {
+  const tbody = document.getElementById('tablaEstudiantes');
+  tbody.innerHTML = '';
+
+  estudiantes.forEach(estudiante => {
+    const row = document.createElement('tr');
+
+    row.innerHTML = `
+      <td>${estudiante.codigo}</td>
+      <td>${estudiante.nombre}</td>
+      <td>${estudiante.correo}</td>
+      <td>${estudiante.programa}</td>
+      <td>
+        <button class="action-btn" onclick="editarEstudiante('${estudiante.id}')">Editar</button>
+        <button class="action-btn" onclick="eliminarEstudiante('${estudiante.id}')">Eliminar</button>
+      </td>
+    `;
+
+    tbody.appendChild(row);
+  });
+}
+
+// Función para editar estudiante (simplificada)
+async function editarEstudiante(id) {
+  // Lógica para editar (puedes implementar un modal o inline edit)
+  alert('Editar no implementado aún. ID: ' + id);
+}
+
+// Función para eliminar estudiante
+async function eliminarEstudiante(id) {
+  if (confirm('¿Estás seguro de eliminar este estudiante?')) {
+    try {
+      await deleteDoc(doc(window.db, 'estudiantes', id));
+      cargarEstudiantes();
+    } catch (error) {
+      console.error('Error eliminando estudiante:', error);
+    }
+  }
+}
+
+// Función para filtrar estudiantes
+function filtrarEstudiantes() {
+  const filtro = document.getElementById('busqueda').value.toLowerCase();
+  // Implementar filtrado en el array cargado
+  // Por simplicidad, recargar y filtrar
+  cargarEstudiantes(); // Luego filtrar en mostrarEstudiantes si es necesario
+}
+
+// Cargar estudiantes al inicio
+window.onload = cargarEstudiantes;
     const tbody = document.getElementById('tablaEstudiantes');
     tbody.innerHTML = '';
 
