@@ -4,16 +4,16 @@ Este es un proyecto simple que hice para gestionar estudiantes. Básicamente, es
 
 ## ¿Qué hace?
 
-- Agregar estudiantes con código, nombre, email y programa.
+- Agregar estudiantes con código, nombre, email y programa. (En el caso de el codigo, se hace la verificacion de que si sean valores numericos y que ningun otro estudiante coincida con el mismo codigo, el email tambien tiene una comprobacion, el nombre igual que no tenga caracteres numericos, y puse que el programa sea de seleccion para que no se tengan errores).
 - Ver todos en una tabla bonita.
-- Buscar por nombre, email, programa o código (en tiempo real).
+- Buscar por nombre, email, programa o código (en tiempo real para que se pueda filtrar en caso de que quiera ver los estudiantes de una carrera en especifico o alguno de los otros atributos).
 - Editar o borrar estudiantes fácilmente.
 - Interfaz chévere con colores suaves.
 
 ## Tecnologías que usé
 
 - **HTML5**: Para la estructura de la página.
-- **CSS3**: Para que se vea bonito.
+- **CSS3**: Para la parte grafica de la página. 
 - **JavaScript**: Para la lógica y guardar datos localmente.
 
 ## Cómo lo hice
