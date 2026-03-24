@@ -1,6 +1,3 @@
-// Importar funciones de Firebase (asumiendo que están disponibles globalmente desde index.html)
-const { collection, addDoc, getDocs, doc, updateDoc, deleteDoc, query, where } = window; // Ajustar según el import
-
 // Función para guardar estudiante
 async function guardarEstudiante() {
   const codigo = document.getElementById('codigo').value.trim();
@@ -33,15 +30,15 @@ async function guardarEstudiante() {
 
   try {
     // Verificar si el código ya existe
-    const q = query(collection(window.db, 'estudiantes'), where('codigo', '==', codigo));
-    const querySnapshot = await getDocs(q);
+    const q = window.query(window.collection(window.db, 'estudiantes'), window.where('codigo', '==', codigo));
+    const querySnapshot = await window.getDocs(q);
     if (!querySnapshot.empty) {
       alert('Ese código ya está registrado.');
       return;
     }
 
     // Agregar estudiante
-    await addDoc(collection(window.db, 'estudiantes'), {
+    await window.addDoc(window.collection(window.db, 'estudiantes'), {
       codigo,
       nombre,
       correo,
@@ -63,7 +60,7 @@ async function guardarEstudiante() {
 // Función para cargar estudiantes
 async function cargarEstudiantes() {
   try {
-    const querySnapshot = await getDocs(collection(window.db, 'estudiantes'));
+    const querySnapshot = await window.getDocs(window.collection(window.db, 'estudiantes'));
     const estudiantes = [];
     querySnapshot.forEach((doc) => {
       estudiantes.push({ id: doc.id, ...doc.data() });
@@ -108,7 +105,7 @@ async function editarEstudiante(id) {
 async function eliminarEstudiante(id) {
   if (confirm('¿Estás seguro de eliminar este estudiante?')) {
     try {
-      await deleteDoc(doc(window.db, 'estudiantes', id));
+      await window.deleteDoc(window.doc(window.db, 'estudiantes', id));
       cargarEstudiantes();
     } catch (error) {
       console.error('Error eliminando estudiante:', error);

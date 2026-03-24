@@ -122,9 +122,6 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
     import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, query, where } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-
     // Your web app's Firebase configuration
     const firebaseConfig = {
       apiKey: "TU_API_KEY",
@@ -139,8 +136,16 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // Ahora puedes usar db para Firestore
-    window.db = db; // Hacerlo global para usar en app.js
+    // Hacer disponibles globalmente
+    window.db = db;
+    window.collection = collection;
+    window.addDoc = addDoc;
+    window.getDocs = getDocs;
+    window.doc = doc;
+    window.updateDoc = updateDoc;
+    window.deleteDoc = deleteDoc;
+    window.query = query;
+    window.where = where;
   </script>
   <script src="app.js"></script>
 
