@@ -48,18 +48,18 @@ Elegí colores verdes y azules suaves, botones redondeados y un fondo relajante.
 - `git remote add origin <URL>` y `git push` para subir.
 
 ### 2. GitHub Pages
-- Hice el repo público.
-- Fui a Settings > Pages > Elegí la rama master y carpeta raíz.
-- ¡Listo! El sitio está en https://angomez-0426.github.io/html-formulario/
+- Hice el repositorio público.
+- Fui a Settings > Pages > Elegí la rama master y carpeta root.
+- El sitio está en https://angomez-0426.github.io/html-formulario/
 
 ### 3. Acceso público
 Ahora cualquiera con internet puede usarlo desde su PC o móvil. Los datos son locales, así que cada uno tiene su lista.
 
 ## Para probarlo local
 
-1. Clona el repo: `git clone <URL>`.
+1. Clona el repositorio: `git clone <URL>`.
 2. Abre index.html en tu navegador.
-3. ¡Ya está! No necesitas instalar nada.
+3. No necesitas instalar nada.
 
 ## Cómo usarlo
 
@@ -68,10 +68,3 @@ Ahora cualquiera con internet puede usarlo desde su PC o móvil. Los datos son l
 3. Busca con el campo de arriba.
 4. Edita o borra desde la tabla.
 
-## Contribuciones
-
-Si quieres mejorar algo, haz un fork y manda un PR. ¡Todo bienvenido!
-
-## Licencia
-
-Es open source, úsalo como quieras. 😊
