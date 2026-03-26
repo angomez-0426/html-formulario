@@ -29,7 +29,7 @@ Para usar la base de datos en la nube:
 2. Habilita Firestore Database.
 3. Ve a Project Settings > General > Your apps > Web app, copia la config.
 4. En `index.html`, reemplaza `TU_API_KEY`, etc., con tus valores reales.
-5. ¡Listo! Los datos se guardan en la nube y se comparten entre todos los usuarios.
+5. Los datos se guardan en la nube y se comparten entre todos los usuarios.
 
 ## Cómo lo hice
 
