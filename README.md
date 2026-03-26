@@ -1,6 +1,10 @@
 # Gestión de Estudiantes 
 
-Este es un proyecto simple que hice para gestionar estudiantes. Básicamente, es un formulario web donde puedes agregar, ver, buscar, editar y borrar estudiantes. Todo se guarda en el navegador, así que no necesitas un servidor ni nada complicado.
+Este es un proyecto simple que hice para gestionar estudiantes. Básicamente, es un formulario web donde puedes agregar, ver, buscar, editar y borrar estudiantes.  
+
+Los datos pueden almacenarse de dos formas:
+- **Localmente** usando `localStorage` (modo básico, sin necesidad de servidor).
+- **En la nube** usando **Firebase Firestore**, lo que permite compartir la información entre múltiples usuarios.
 
 ## ¿Qué hace?
 
@@ -36,7 +40,7 @@ Puse un formulario con campos para el código (solo números), nombre, email y u
 Elegí colores verdes y azules suaves, botones redondeados y un fondo relajante. Nada fancy, pero se ve bien.
 
 ### 3. La lógica (JavaScript en app.js)
-- Uso localStorage para guardar los datos (no se pierden al recargar).
+- Uso `localStorage` para persistencia local y **Firebase Firestore** para almacenamiento en la nube, permitiendo sincronización entre usuarios.
 - Funciones principales:
   - `guardarEstudiante()`: Chequea que todo esté bien y guarda.
   - `mostrarEstudiantes()`: Dibuja la tabla con todos.
@@ -64,7 +68,7 @@ Elegí colores verdes y azules suaves, botones redondeados y un fondo relajante.
 - El sitio está en https://angomez-0426.github.io/html-formulario/
 
 ### 3. Acceso público
-Ahora cualquiera con internet puede usarlo desde su PC o móvil. Los datos son locales, así que cada uno tiene su lista.
+Ahora cualquiera con internet puede usarlo desde su PC o móvil. Dependiendo de la configuración, los datos pueden ser locales (por usuario) o compartidos usando Firebase.
 
 ## Para probarlo local
 
@@ -78,4 +82,3 @@ Ahora cualquiera con internet puede usarlo desde su PC o móvil. Los datos son l
 2. Dale a "Guardar".
 3. Busca con el campo de arriba.
 4. Edita o borra desde la tabla.
-
